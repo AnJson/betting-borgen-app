@@ -27,6 +27,10 @@
         }
     },
     "rules": {
+        "react/jsx-no-useless-fragment": "off",
+        "react/require-default-props": "off",
+        "no-param-reassign": "off",
+        "jsx-quotes": ["error", "prefer-single"],
         "semi": ["error", "never"],
         "comma-dangle": ["error", "never"],
         "react/jsx-one-expression-per-line": ["off"],
