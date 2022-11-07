@@ -27,6 +27,7 @@
         }
     },
     "rules": {
+        "space-infix-ops": "off",
         "react/jsx-no-useless-fragment": "off",
         "react/require-default-props": "off",
         "no-param-reassign": "off",

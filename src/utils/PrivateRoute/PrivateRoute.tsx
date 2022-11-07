@@ -18,7 +18,7 @@ const PrivateRoute = ({ userId, redirectPath, children } : Props) => {
     return <Navigate to={redirectPath} replace />
   }
 
-  return <>{ children }</> || <Outlet />
+  return children ? <>{ children }</> : <Outlet />
 }
 
 export default PrivateRoute

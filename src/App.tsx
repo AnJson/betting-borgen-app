@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import NotFound from './pages/NotFound/NotFound'
@@ -8,26 +8,33 @@ import Start from './pages/Start/Start'
 import MainLayout from './layout/MainLayout/MainLayout'
 import Home from './pages/Home/Home'
 import { useAppSelector } from './hooks/use-app-selector'
+import Groups from './pages/Groups/Groups'
+import User from './pages/User/User'
+import Group from './pages/Group/Group'
+import GroupAuthRoute from './utils/GroupAuthRoute/GroupAuthRoute'
+import UserAuthRoute from './utils/UserAuthRoute/UserAuthRoute'
+import { UserState } from './store/reducers/user'
 
 const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const user = useAppSelector((state) => state.user)
+  const user = useAppSelector<UserState>((state) => state.user)
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 2000)
+  }, [])
 
   return (
     <Routes>
       <Route element={isLoading ? <LoadingScreen /> : <MainLayout />}>
         <Route path='/' element={<Start />} />
-        <Route element={<PrivateRoute userId={user.id} redirectPath='/' />}>
-          <Route path='home' element={<Home userId={userId} />} />
+        <Route element={<PrivateRoute userId='user.id' redirectPath='/' />}>
+          <Route path='home' element={<Home />} />
           <Route path='groups' element={<Groups />} />
-          <Route element={<GroupAuthorizationRoute />}>
+          <Route element={<UserAuthRoute redirectPath='home' />}>
+            <Route path='users/:userId' element={<User />} />
+          </Route>
+          <Route element={<GroupAuthRoute redirectPath='home' />}>
             <Route path='groups/:groupId' element={<Group />} />
-            <Route path='groups/:groupId/projects' element={<Projects />} />
-            <Route element={<ProjectAuthorizationRoute />}>
-              <Route path='groups/:groupId/projects/:projectId' element={<Project />} />
-              <Route path='groups/:groupId/projects/:projectId/tasks' element={<Tasks />} />
-              <Route path='groups/:groupId/projects/:projectId/tasks/:taskId' element={<Task />} />
-            </Route>
           </Route>
         </Route>
         <Route path='*' element={<NotFound />} />
