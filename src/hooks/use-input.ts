@@ -1,11 +1,6 @@
 import { useState } from 'react'
 
-type Arguments = {
-  validateValue: (value: string) => boolean
-  initialValue: string
-}
-
-const useInput = ({ validateValue, initialValue = '' } : Arguments) => {
+const useInput = (validateValue: (value: string) => any, initialValue = '') => {
   const [enteredValue, setEnteredValue] = useState<string>(initialValue)
   const [isTouched, setIsTouched] = useState<boolean>(false)
 

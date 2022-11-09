@@ -1,0 +1,25 @@
+.alert {
+  padding: 10px;
+}
+
+.alert--absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.alert--error {
+  color: var(--textcolor-main);
+  background-color: var(--color-error);
+}
+
+.alert--success {
+  color: var(--textcolor-main);
+  background-color: var(--color-success);
+}
+
+.alert--warning {
+  color: var(--textcolor-main);
+  background-color: var(--color-warning);
+}

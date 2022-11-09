@@ -1,6 +1,9 @@
 :root {
   --color-main: rgb(245, 222, 118);
   --color-cta: rgb(219, 161, 35);
+  --color-error: rgb(219, 78, 35);
+  --color-success: rgb(103, 219, 35);
+  --color-warning: rgb(219, 118, 35);
   --background-light: rgb(230, 240, 229);
   --background-dark: rgb(35, 43, 34);
   --textcolor-main: rgb(31, 30, 30);

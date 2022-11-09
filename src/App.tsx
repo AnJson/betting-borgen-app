@@ -14,8 +14,8 @@ import Group from './pages/Group/Group'
 import GroupAuthRoute from './utils/GroupAuthRoute/GroupAuthRoute'
 import UserAuthRoute from './utils/UserAuthRoute/UserAuthRoute'
 import { UserState } from './store/reducers/user'
-import Login from './pages/Login/login'
 import SignUp from './pages/SignUp/SignUp'
+import Login from './pages/Login/Login'
 
 const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
@@ -25,11 +25,16 @@ const App = () => {
     setTimeout(() => setIsLoading(false), 2000)
   }, [])
 
+  const loginHandler = (email: string, password: string) => {
+    console.log(`email: ${email}`)
+    console.log(`password: ${email}`)
+  }
+
   return (
     <Routes>
       <Route element={isLoading ? <LoadingScreen /> : <MainLayout />}>
         <Route path='/' element={<Start />} />
-        <Route path='login' element={<Login />} />
+        <Route path='login' element={<Login onLogin={loginHandler} />} />
         <Route path='register' element={<SignUp />} />
         <Route element={<PrivateRoute userId='user.id' redirectPath='/' />}>
           <Route path='home' element={<Home />} />

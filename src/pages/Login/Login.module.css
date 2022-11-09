@@ -1,0 +1,73 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldset {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 0;
+  border: none;
+}
+
+.fieldset--column {
+  flex-direction: column;
+}
+
+.label {
+  display: flex;
+}
+
+.label--column {
+  flex-direction: column;
+}
+
+.label-text {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: baseline;
+  margin: 0;
+}
+
+.error-message {
+  font-size: 12px;
+  color: var(--textcolor-main);
+}
+
+.input {
+  padding: 6px 10px;
+  border: none;
+  border-bottom: 2px solid var(--color-main);
+  border-radius: 3px;
+  background-color: rgb(255, 255, 255);
+}
+
+.input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--color-cta);
+}
+
+.error {
+  border-bottom: 2px solid var(--color-error);
+}
+
+.error:focus {
+  outline: none;
+  border-bottom: 2px solid var(--color-error);
+}
+
