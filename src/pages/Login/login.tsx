@@ -84,9 +84,11 @@ const Login = ({ onLogin } : Props) => {
   return (
     <div className={classes.wrapper}>
       { invalidLogin && <Alert absolute type='error'><p>Fel epost eller lösenord.</p></Alert> }
-      <ActionBox header='Logga in'>
-        { content }
-      </ActionBox>
+      <div className={classes['action-wrapper']}>
+        <ActionBox header='Logga in'>
+          { content }
+        </ActionBox>
+      </div>
     </div>
   )
 }

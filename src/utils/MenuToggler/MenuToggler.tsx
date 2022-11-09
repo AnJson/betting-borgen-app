@@ -10,7 +10,7 @@ const MenuToggler = ({ isOpen, onClick } : Props) => {
   return (
     <>
       <label htmlFor='checkbox4'>
-        <input type='checkbox' id='checkbox4' checked={isOpen} className={`${classes.checkbox4} ${classes.visuallyHidden}`} />
+        <input type='checkbox' id='checkbox4' readOnly checked={isOpen} className={`${classes.checkbox4} ${classes.visuallyHidden}`} />
         <div
           className={`${classes.hamburger} ${classes.hamburger4}`}
           role='button'

@@ -9,6 +9,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+}
+
+.action-wrapper {
+  width: 40%;
+  min-width: 30rem;
 }
 
 .form {
@@ -39,22 +45,24 @@
 .label-text {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 1rem;
   align-items: baseline;
   margin: 0;
+  font-size: 1.6rem;
 }
 
 .error-message {
-  font-size: 12px;
+  font-size: 1.4rem;
   color: var(--textcolor-main);
 }
 
 .input {
+  margin-top: 5px;
   padding: 6px 10px;
   border: none;
   border-bottom: 2px solid var(--color-main);
   border-radius: 3px;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--background-light);
 }
 
 .input:focus {
