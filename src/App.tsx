@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import './App.css'
 import NotFound from './pages/NotFound/NotFound'
 import PrivateRoute from './utils/PrivateRoute/PrivateRoute'
@@ -13,30 +13,51 @@ import User from './pages/User/User'
 import Group from './pages/Group/Group'
 import GroupAuthRoute from './utils/GroupAuthRoute/GroupAuthRoute'
 import UserAuthRoute from './utils/UserAuthRoute/UserAuthRoute'
-import { UserState } from './store/reducers/user'
+import { UserState, userActions } from './store/reducers/user'
 import SignUp from './pages/SignUp/SignUp'
 import Login from './pages/Login/Login'
+import useHttp from './hooks/use-http'
+import { useAppDispatch } from './hooks/use-app-dispatch'
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [invalidLogin, setInvalidLogin] = useState<boolean>(false)
+  const navigate = useNavigate()
   const user = useAppSelector<UserState>((state) => state.user)
-
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 2000)
-  }, [])
+  const dispatch = useAppDispatch()
+  const { isLoading: loginIsLoading, sendRequest: loginRequest } = useHttp()
 
   const loginHandler = (email: string, password: string) => {
-    console.log(`email: ${email}`)
-    console.log(`password: ${email}`)
+    loginRequest(
+      {
+        url: `${process.env.REACT_APP_LOGIN_URL}`,
+        body: {
+          email,
+          password
+        },
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST'
+      },
+      (data) => dispatch(userActions.login(data))
+    )
+
+    if (!user.token) {
+      setInvalidLogin(true)
+    } else {
+      setInvalidLogin(false)
+      navigate('home')
+    }
   }
 
   return (
     <Routes>
       <Route element={isLoading ? <LoadingScreen /> : <MainLayout />}>
         <Route path='/' element={<Start />} />
-        <Route path='login' element={<Login onLogin={loginHandler} />} />
+        <Route path='login' element={<Login invalidLogin={invalidLogin} isLoading={loginIsLoading} onLogin={loginHandler} />} />
         <Route path='register' element={<SignUp />} />
-        <Route element={<PrivateRoute userId='user.id' redirectPath='/' />}>
+        <Route element={<PrivateRoute userId={user.id} redirectPath='/' />}>
           <Route path='home' element={<Home />} />
           <Route path='groups' element={<Groups />} />
           <Route element={<UserAuthRoute redirectPath='home' />}>

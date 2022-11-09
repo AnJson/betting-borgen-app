@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import useInput from '../../hooks/use-input'
 import ActionBox from '../../utils/ActionBox/ActionBox'
 import Alert from '../../utils/Alert/Alert'
@@ -8,12 +8,11 @@ import classes from './Login.module.css'
 
 type Props = {
   onLogin: (email: string, password: string) => void
+  isLoading: boolean
+  invalidLogin: boolean
 }
 
-const Login = ({ onLogin } : Props) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [invalidLogin, setInvalidLogin] = useState<boolean>(false)
-
+const Login = ({ isLoading, invalidLogin, onLogin } : Props) => {
   const {
     value: passwordValue,
     isValid: passwordIsValid,
@@ -33,24 +32,10 @@ const Login = ({ onLogin } : Props) => {
   } = useInput((val) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(val))
 
   const loginSubmitHandler = (event: SubmitEvent) => {
-    try {
-      event.preventDefault()
-
-      if (invalidLogin) {
-        setInvalidLogin(false)
-      }
-
-      setIsLoading(true)
-      onLogin(emailValue, passwordValue)
-      setIsLoading(false)
-      emailReset()
-      passwordReset()
-    } catch (error) {
-      setIsLoading(false)
-      emailReset()
-      passwordReset()
-      setInvalidLogin(true)
-    }
+    event.preventDefault()
+    onLogin(emailValue, passwordValue)
+    emailReset()
+    passwordReset()
   }
 
   let content = (

@@ -73,7 +73,7 @@ const Navigation = ({ onNavClick } : Props) => {
           </li>
         )}
         { user.token && (
-          <li className={classes['menu-item']}>
+          <li className={`${classes['menu-item']} ${classes.action}`}>
             <button type='button' className={classes['auth-action']} onClick={logOutClickHandler}>
               Logga ut
             </button>

@@ -27,7 +27,7 @@ const userSlice = createSlice({
       state.firstname = action.payload.firstname
       state.lastname = action.payload.lastname
       state.id = action.payload.id
-      state.token = action.payload.token
+      state.token = action.payload.access_token
       state.expiresIn = action.payload.expiresIn
 
       localStorage.setItem('bb-user', JSON.stringify({
