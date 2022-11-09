@@ -31,7 +31,7 @@
 
 .bar2,
 .bar3 {
-    top: 13.5px;
+    top: 13px;
 }
 
 .bar3 {
@@ -43,7 +43,7 @@
 }
 
 .hamburger4 .bar4 {
-  top: 13.5px;
+  top: 13px;
 }
 
 .hamburger4 .bar5 {
@@ -57,17 +57,17 @@
 .hamburger4 .bar2 {
   width: 1px;
   transform: rotate(90deg);
-  left: 13.5px;
+  left: 13px;
 }
 
 .hamburger4 .bar3 {
   width: 1px;
-  left: 13.5px;
+  left: 13px;
   
 }
 
 .checkbox4:checked + .hamburger4 > .bar1 {
-  top: 13.5px;
+  top: 13px;
   background-color: transparent;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .checkbox4:checked + .hamburger4 > .bar5 {
-  bottom: 13.5px;
+  bottom: 13px;
   background-color: transparent; 
 }
 

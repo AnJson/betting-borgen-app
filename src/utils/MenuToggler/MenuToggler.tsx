@@ -1,34 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import classes from './MenuToggler.module.css'
 
 type Props = {
-  onOpen: () => void
-  onClose: () => void
+  isOpen: boolean
+  onClick: () => void
 }
 
-const MenuToggler = ({ onOpen, onClose } : Props) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-
-  const clickHandler = () => {
-    if (!isOpen) {
-      onOpen()
-    } else {
-      onClose()
-    }
-
-    setIsOpen(!isOpen)
-  }
-
+const MenuToggler = ({ isOpen, onClick } : Props) => {
   return (
     <>
       <label htmlFor='checkbox4'>
-        <input type='checkbox' id='checkbox4' className={`${classes.checkbox4} ${classes.visuallyHidden}`} />
+        <input type='checkbox' id='checkbox4' checked={isOpen} className={`${classes.checkbox4} ${classes.visuallyHidden}`} />
         <div
           className={`${classes.hamburger} ${classes.hamburger4}`}
           role='button'
           tabIndex={0}
-          onClick={clickHandler}
-          onKeyPress={clickHandler}
+          onClick={onClick}
+          onKeyPress={onClick}
         >
           <span className={`${classes.bar} ${classes.bar1}`} />
           <span className={`${classes.bar} ${classes.bar2}`} />

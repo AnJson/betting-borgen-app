@@ -1,5 +1,6 @@
 :root {
   --color-main: rgb(245, 222, 118);
+  --color-cta: rgb(219, 161, 35);
   --background-light: rgb(230, 240, 229);
   --background-dark: rgb(35, 43, 34);
   --textcolor-main: rgb(31, 30, 30);
@@ -10,13 +11,6 @@ html {
   font-size: 10px;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  margin: 0;
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -24,4 +18,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
 }

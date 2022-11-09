@@ -16,9 +16,9 @@ const Header = () => {
       <NavLink className={classes.logo} to='/'>
         <h1 className={classes.logo}>Betting-Borgen</h1>
       </NavLink>
-      <MenuToggler onOpen={toggleMenuHandler} onClose={toggleMenuHandler} />
+      <MenuToggler isOpen={menuIsOpen} onClick={toggleMenuHandler} />
       <div className={`${classes.menu} ${menuIsOpen && classes.open}`}>
-        <Navigation />
+        <Navigation onNavClick={toggleMenuHandler} />
       </div>
     </header>
   )
